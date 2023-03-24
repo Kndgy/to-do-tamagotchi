@@ -10,13 +10,26 @@ export interface Todo {
 const initialTodos: Todo[] = [];
 
 export const useTodos = () => {
+
+  const now = new Date();
+  const [seconds, minute, hour, day, month, year] = [
+    now.getSeconds().toString(),
+    now.getMinutes().toString(),
+    now.getHours().toString(),
+    now.getDay().toString(),
+    now.getMonth().toString(),
+    now.getFullYear().toString()
+  ];
+
+  const formattedDate = seconds + minute + hour + day + month + year
+
     const [todos, setTodos] = useState<Todo[]>(initialTodos);
     const [newTodo, setNewTodo] = useState<string>("");
     const [taskDate, setTaskDate] = useState<string>('');
 
     const addTodo = (task: string, date: string) => {
         const newTodo = {
-          id: Date.now(),
+          id: parseInt(formattedDate),
           task,
           completed: false,
           date
