@@ -4,6 +4,7 @@ interface Todo {
   id: number;
   task: string;
   completed: boolean;
+  date: string
 }
 
 const initialTodos: Todo[] = [];
@@ -11,17 +12,20 @@ const initialTodos: Todo[] = [];
 const App = () => {
   const [todos, setTodos] = useState<Todo[]>(initialTodos);
   const [newTodo, setNewTodo] = useState<string>("");
+  const [taskDate, setTaskDate] = useState<string>('');
 
-  const addTodo = (task: string) => {
+  const addTodo = (task: string, date: string) => {
     const newTodo = {
       id: Date.now(),
       task,
       completed: false,
+      date
     };
     const updatedTodos = [...todos, newTodo];
     setTodos(updatedTodos);
     localStorage.setItem("todos", JSON.stringify(updatedTodos));
     setNewTodo("");
+    setTaskDate(taskDate)
   };
 
   const deleteTodo = (id: number) => {
@@ -41,7 +45,7 @@ const App = () => {
   const handleAddTodo = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (!newTodo) return;
-    addTodo(newTodo);
+    addTodo(newTodo, taskDate);
   };
 
   const handleEditTodo = (id: number, newTask: string) => {
@@ -56,6 +60,10 @@ const App = () => {
     setNewTodo(event.target.value);
   };
 
+  const handleDateChange = (event: React.ChangeEvent<HTMLDataElement>) => {
+    setTaskDate(event.target.value);
+  };
+
   useEffect(() => {
     const storedTodos = localStorage.getItem("todos");
     if (storedTodos) {
@@ -68,6 +76,7 @@ const App = () => {
       <h1>To-Do List</h1>
       <form onSubmit={handleAddTodo}>
         <input type="text" value={newTodo} onChange={handleChange} />
+        <input type="date" onChange={handleDateChange}/>
         <button type="submit">Add</button>
       </form>
       <ul>
@@ -101,6 +110,7 @@ const App = () => {
                 }}
               >
                 {todo.task}
+                {todo.date}
               </span>
             )}
             <button onClick={() => deleteTodo(todo.id)}>Delete</button>
