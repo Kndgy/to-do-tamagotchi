@@ -1,7 +1,7 @@
 import { invoke } from "@tauri-apps/api";
 import React, { useEffect, useState } from "react";
 import './App.css'
-import { useTodos } from "./state";
+import { useTodos } from "./utils/state";
 
 const App = () => {
   if(typeof window !== 'undefined'){

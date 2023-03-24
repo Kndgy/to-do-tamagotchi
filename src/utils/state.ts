@@ -1,5 +1,3 @@
-// state.ts
-
 import { useState, useEffect } from "react";
 
 export interface Todo {
