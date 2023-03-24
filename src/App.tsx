@@ -71,6 +71,11 @@ const App = () => {
     }
   }, []);
 
+  const storedTodos = localStorage.getItem("todos")
+  if(storedTodos){
+    console.log(JSON.parse(storedTodos))
+  }
+
   return (
     <div>
       <h1>To-Do List</h1>
@@ -117,6 +122,9 @@ const App = () => {
           </li>
         ))}
       </ul>
+      "status effect"
+      <br/>
+      placeholder
     </div>
   );
 };
