@@ -4,14 +4,21 @@
   margin: 0 auto;
 }
 
+.todo-form{
+  display: flex;
+  gap: 0.5em;
+}
+
 .todo-input {
   padding: 0.5rem;
   border-radius: 5px;
   border: none;
   margin-right: 0.5rem;
+  width: 100%;
 }
 
 .todo-date {
+  width: 100%;
   padding: 0.5rem;
   border-radius: 5px;
   border: none;
@@ -28,15 +35,22 @@
 }
 
 .todo-checkbox {
-  margin-right: 0.5rem;
+  margin-right: 2rem;
 }
 
 .todo-task {
-  margin-right: 0.5rem;
   cursor: pointer;
   display: flex;
-  flex-direction: row;
-  gap: 0.5rem
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  margin-top: -4px;
+  width: 100%;
+}
+
+.todo-task-date {
+  display: flex;
+  gap: 1rem;
 }
 
 .todo-edit {
@@ -46,6 +60,13 @@
   margin-right: 0.5rem;
 }
 
+.todo-delete-wrapper {
+  justify-content: flex-end;
+  width: 100%;
+  justify-content: flex-end;
+  display: flex;
+}
+
 .todo-delete {
   background-color: #dc3545;
   color: #fff;
@@ -53,6 +74,8 @@
   border-radius: 5px;
   padding: 0.5rem 1rem;
   cursor: pointer;
+  justify-content: flex-end;
+  
 }
 
 .todo-status {

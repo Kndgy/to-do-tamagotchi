@@ -22,7 +22,8 @@ li{
   list-style: none;
   display: flex;
   flex-direction: row;
-  align-items: center;
+  align-items: flex-start;
   padding: 0.5rem 0 0.5rem 0;
-  gap: 0.5rem;
+  gap: 1rem;
+  width: 100%;
 }
