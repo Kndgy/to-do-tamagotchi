@@ -44,6 +44,14 @@ const App = () => {
     addTodo(newTodo);
   };
 
+  const handleEditTodo = (id: number, newTask: string) => {
+    const updatedTodos = todos.map((todo) =>
+      todo.id === id ? { ...todo, task: newTask } : todo
+    );
+    setTodos(updatedTodos);
+    localStorage.setItem("todos", JSON.stringify(updatedTodos));
+  };
+
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setNewTodo(event.target.value);
   };
@@ -72,9 +80,29 @@ const App = () => {
                 updateTodoStatus(todo.id, event.target.checked)
               }
             />
-            <span style={{ textDecoration: todo.completed ? "line-through" : "" }}>
-              {todo.task}
-            </span>
+            {todo.id === 0 ? (
+              <input
+                type="text"
+                defaultValue={todo.task}
+                onBlur={(event) =>
+                  handleEditTodo(todo.id, event.target.value.trim())
+                }
+              />
+            ) : (
+              <span
+                style={{
+                  textDecoration: todo.completed ? "line-through" : "",
+                }}
+                onDoubleClick={() => {
+                  const newTask = prompt("Enter new task", todo.task);
+                  if (newTask) {
+                    handleEditTodo(todo.id, newTask.trim());
+                  }
+                }}
+              >
+                {todo.task}
+              </span>
+            )}
             <button onClick={() => deleteTodo(todo.id)}>Delete</button>
           </li>
         ))}
