@@ -1,7 +1,62 @@
-.logo.vite:hover {
-  filter: drop-shadow(0 0 2em #747bff);
+.todo-container {
+  font-family: Arial, sans-serif;
+  max-width: 500px;
+  margin: 0 auto;
 }
 
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafb);
+.todo-input {
+  padding: 0.5rem;
+  border-radius: 5px;
+  border: none;
+  margin-right: 0.5rem;
+}
+
+.todo-date {
+  padding: 0.5rem;
+  border-radius: 5px;
+  border: none;
+  margin-right: 0.5rem;
+}
+
+.todo-button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+}
+
+.todo-checkbox {
+  margin-right: 0.5rem;
+}
+
+.todo-task {
+  margin-right: 0.5rem;
+  cursor: pointer;
+  display: flex;
+  flex-direction: row;
+  gap: 0.5rem
+}
+
+.todo-edit {
+  padding: 0.5rem;
+  border-radius: 5px;
+  border: none;
+  margin-right: 0.5rem;
+}
+
+.todo-delete {
+  background-color: #dc3545;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+}
+
+.todo-status {
+  font-size: 0.8rem;
+  color: #999;
+  margin-top: 2rem;
 }

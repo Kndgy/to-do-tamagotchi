@@ -1,4 +1,6 @@
+import { invoke } from "@tauri-apps/api";
 import React, { useEffect, useState } from "react";
+import './App.css'
 
 interface Todo {
   id: number;
@@ -10,6 +12,14 @@ interface Todo {
 const initialTodos: Todo[] = [];
 
 const App = () => {
+  // You will see "Hello, World!" printed in the console!
+  if(typeof window !== 'undefined'){
+    console.log("this code is running in the browser")
+  }else{
+    invoke('greet', { name: 'World' })
+    .then((response) => console.log(response))
+  }
+// console.log()
   const [todos, setTodos] = useState<Todo[]>(initialTodos);
   const [newTodo, setNewTodo] = useState<string>("");
   const [taskDate, setTaskDate] = useState<string>('');
@@ -75,57 +85,71 @@ const App = () => {
   if(storedTodos){
     console.log(JSON.parse(storedTodos))
   }
+  const now = new Date();
+  const [minute, hour, day, month, year] = [
+    now.getMinutes(),
+    now.getHours(),
+    now.getDay(),
+    now.getMonth(),
+    now.getFullYear()
+  ];
+  console.log(minute, hour, day, month, year);
+  document.addEventListener('contextmenu', event => event.preventDefault());
+
 
   return (
-    <div>
-      <h1>To-Do List</h1>
-      <form onSubmit={handleAddTodo}>
-        <input type="text" value={newTodo} onChange={handleChange} />
-        <input type="date" onChange={handleDateChange}/>
-        <button type="submit">Add</button>
-      </form>
-      <ul>
-        {todos.map((todo) => (
-          <li key={todo.id}>
-            <input
-              type="checkbox"
-              checked={todo.completed}
-              onChange={(event) =>
-                updateTodoStatus(todo.id, event.target.checked)
+    <div className="todo-container">
+  <h1>To-Do List</h1>
+  <form onSubmit={handleAddTodo}>
+    <input className="todo-input" type="text" value={newTodo} onChange={handleChange} placeholder="Enter a new to-do" />
+    <input className="todo-date" type="date" onChange={handleDateChange}/>
+    <button className="todo-button" type="submit">Add</button>
+  </form>
+  <ul>
+    {todos.map((todo) => (
+      <li key={todo.id}>
+        <input
+          className="todo-checkbox"
+          type="checkbox"
+          checked={todo.completed}
+          onChange={(event) =>
+            updateTodoStatus(todo.id, event.target.checked)
+          }
+        />
+        {todo.id === 0 ? (
+          <input
+            className="todo-edit"
+            type="text"
+            defaultValue={todo.task}
+            onBlur={(event) =>
+              handleEditTodo(todo.id, event.target.value.trim())
+            }
+          />
+        ) : (
+          <div
+            className="todo-task"
+            style={{
+              textDecoration: todo.completed ? "line-through" : "",
+            }}
+            onClick={() => {
+              const newTask = prompt("Enter new task", todo.task);
+              if (newTask) {
+                handleEditTodo(todo.id, newTask.trim());
               }
-            />
-            {todo.id === 0 ? (
-              <input
-                type="text"
-                defaultValue={todo.task}
-                onBlur={(event) =>
-                  handleEditTodo(todo.id, event.target.value.trim())
-                }
-              />
-            ) : (
-              <span
-                style={{
-                  textDecoration: todo.completed ? "line-through" : "",
-                }}
-                onDoubleClick={() => {
-                  const newTask = prompt("Enter new task", todo.task);
-                  if (newTask) {
-                    handleEditTodo(todo.id, newTask.trim());
-                  }
-                }}
-              >
-                {todo.task}
-                {todo.date}
-              </span>
-            )}
-            <button onClick={() => deleteTodo(todo.id)}>Delete</button>
-          </li>
-        ))}
-      </ul>
-      "status effect"
-      <br/>
-      placeholder
-    </div>
+            }}
+          >
+            <div>{todo.task}</div>
+            <div>{todo.date}</div>
+          </div>
+        )}
+        <button className="todo-delete" onClick={() => deleteTodo(todo.id)}>Delete</button>
+      </li>
+    ))}
+  </ul>
+  <p className="todo-status">status effect</p>
+  this is tamagotchi placeholder
+</div>
+
   );
 };
 
