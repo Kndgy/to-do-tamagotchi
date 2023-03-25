@@ -4,6 +4,8 @@ import React, { useEffect, useState } from "react";
 
 export const TodoPage = () => {
     const [openPage, setOpenPage] = useState<boolean>(false)
+    const [startTime, setStartTime] = useState<string>('')
+    const [dueTime, setDueTime] = useState<string>('')
 
     const {    
         todos,
@@ -37,12 +39,21 @@ export const TodoPage = () => {
         }
     }
 
+    const handleTimeChange = (event: React.ChangeEvent<HTMLDataElement>) => {
+        setStartTime(event.target.value)
+        console.log(startTime)
+    }
+
+    const handleDueTimeChange = (event: React.ChangeEvent<HTMLDataElement>) =>{
+        console.log(event.target.value)
+    }
+
     return (
         <div className="todo-container">
             <h1>To-Do List</h1>
             <form className="todo-form" onSubmit={handleAddTodo}>
                 <input className="todo-input" type="text" value={newTodo} onChange={handleChange} placeholder="Enter a new to-do" />
-                <input className="todo-input" type="time"/>
+                <input className="todo-input" type="time" onChange={handleTimeChange}/>
                 <input className="todo-date" type="date" onChange={handleDateChange}/>
                 <button className="todo-button" type="submit">Add</button>
             </form>
