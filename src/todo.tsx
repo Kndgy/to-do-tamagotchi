@@ -22,17 +22,6 @@ export const TodoPage = () => {
     if(storedTodos){
         // console.log(JSON.parse(storedTodos))
     }
-    const now = new Date();
-    const [seconds, minute, hour, day, month, year] = [
-        now.getSeconds(),
-        now.getMinutes(),
-        now.getHours(),
-        now.getDay(),
-        now.getMonth(),
-        now.getFullYear()
-    ];
-    // console.log(seconds, minute, hour, day, month, year);
-    // console.log(Date.now())
 
     const DateElementCheck = ({todo}:{todo:string}) =>{
         if(todo){
@@ -53,6 +42,7 @@ export const TodoPage = () => {
             <h1>To-Do List</h1>
             <form className="todo-form" onSubmit={handleAddTodo}>
                 <input className="todo-input" type="text" value={newTodo} onChange={handleChange} placeholder="Enter a new to-do" />
+                <input className="todo-input" type="time"/>
                 <input className="todo-date" type="date" onChange={handleDateChange}/>
                 <button className="todo-button" type="submit">Add</button>
             </form>
@@ -98,7 +88,11 @@ export const TodoPage = () => {
                 ))}
             </ul>
             <div><Outlet/></div>
-            <p className="todo-status">status effect</p>
+            
+            <p className="todo-status">
+            finish task when?
+            <br/>status effect
+            </p>
             this is tamagotchi placeholder
         </div>
     );
