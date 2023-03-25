@@ -35,6 +35,9 @@ export const Task = ({todo, update, handle, deleteTask}: taskProps) => {
                         }}
                     >
                         <div
+                            style={{
+                                textDecoration: todo.completed ? "line-through" : "",
+                            }}
                             onClick={() => {
                                 const newTask = prompt("Enter new task", todo.task);
                                 if (newTask) {
@@ -45,7 +48,7 @@ export const Task = ({todo, update, handle, deleteTask}: taskProps) => {
                             {todo.task}
                         </div>
                         <div className='todo-task-date'>
-                        <DateElementCheck todo={todo.date}/>
+                        <DateElementCheck todo={todo.dueDate}/>
                         </div>
                     </div>
                 </NavLink>
