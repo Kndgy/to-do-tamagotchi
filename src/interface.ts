@@ -1,8 +1,10 @@
 export interface Todo {
     id: number;
+    startDateTime: string;
+    dueDate: string;
+    dueTime: string;
     task: string;
     completed: boolean;
-    date: string;
 }
 
 export interface taskProps{
