@@ -12,8 +12,7 @@ const initialTodos: Todo[] = [];
 export const useTodos = () => {
 
   const now = new Date();
-  const [seconds, minute, hour, day, month, year] = [
-    now.getSeconds().toString(),
+  const [minute, hour, day, month, year] = [
     now.getMinutes().toString(),
     now.getHours().toString(),
     now.getDay().toString(),
@@ -21,7 +20,7 @@ export const useTodos = () => {
     now.getFullYear().toString()
   ];
 
-  const formattedDate = seconds + minute + hour + day + month + year
+  const formattedDate = minute + hour + day + month + year
 
     const [todos, setTodos] = useState<Todo[]>(initialTodos);
     const [newTodo, setNewTodo] = useState<string>("");
