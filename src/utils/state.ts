@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Todo } from "../interface";
 
 const initialTodos: Todo[] = [];
+const initialId: Todo[] = [];
 
 export const useTodos = () => {
 
@@ -14,7 +15,6 @@ export const useTodos = () => {
         now.getFullYear().toString()
     ];
 
-    console.log(now.getMonth()+1)
     const formattedDate = `${hour}:${minute}-${day}-${month+1}-${year}`
 
     const [todos, setTodos] = useState<Todo[]>(initialTodos);
@@ -36,14 +36,16 @@ export const useTodos = () => {
         localStorage.setItem("todos", JSON.stringify(updatedTodos));
         setNewTodo("");
         setTaskDate(taskDate)
-        console.log(todos.length)
     };
 
     const deleteTodo = (id: number) => {
-    const updatedTodos = todos.filter((todo) => todo.id !== id);
-    setTodos(updatedTodos);
-    localStorage.setItem("todos", JSON.stringify(updatedTodos));
+        const updatedTodos = todos.map((todo) =>
+            todo.id === id ? { ...todo, completed: true } : todo
+        );
+        setTodos(updatedTodos);
+        localStorage.setItem("todos", JSON.stringify(updatedTodos));
     };
+    
 
     const updateTodoStatus = (id: number, completed: boolean) => {
     const updatedTodos = todos.map((todo) =>
@@ -80,6 +82,12 @@ export const useTodos = () => {
     console.log(dueTime)
     }
 
+    const permanentDeleteTodo = (id: number) => {
+        const updatedTodos = todos.filter((todo) => todo.id !== id);
+        setTodos(updatedTodos);
+        localStorage.setItem("todos", JSON.stringify(updatedTodos));
+    };
+
     useEffect(() => {
     const storedTodos = localStorage.getItem("todos");
     if (storedTodos) {
@@ -96,6 +104,7 @@ export const useTodos = () => {
     handleTodoText,
     handleEditTodo,
     handleDateChange,
-    handleTimeChange
+    handleTimeChange,
+    permanentDeleteTodo
   };
 };

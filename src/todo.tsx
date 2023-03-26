@@ -1,4 +1,4 @@
-import { Outlet } from "react-router-dom";
+import { Link, Outlet } from "react-router-dom";
 import { useTodos } from "./utils/state"
 import React, { useState } from "react";
 import { Tamagotchi } from "./components/tamagotchi";
@@ -35,12 +35,18 @@ export const TodoPage = () => {
                 <button className="todo-button" type="submit">Add</button>
             </form>
             <ul>
-                {todos.map((todo) => (
+            {todos
+                .filter((todo) => !todo.completed)
+                .map((todo) => (
                     <Task key={todo.id} todo={todo} update={updateTodoStatus} handle={handleEditTodo} deleteTask={deleteTodo} />
-                ))}
+                ))
+            }
             </ul>
             <div><Outlet/></div>
             <Tamagotchi/>
+            <p>
+                <Link to={'/alltask'}>see all completed task</Link>
+            </p>
         </div>
     );
 }
