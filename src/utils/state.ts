@@ -17,7 +17,8 @@ export const useTodos = () => {
 
     const actualMonth = (month+1).toString()
 
-    const formattedDate = `${hour}:${minute}-${year}-${actualMonth}-${day}`
+    const formattedDate = `${year}-${actualMonth}-${day}`
+    const formattedTime = `${hour}:${minute}`
 
     const [todos, setTodos] = useState<Todo[]>(initialTodos);
     const [newTodo, setNewTodo] = useState<string>("");
@@ -27,10 +28,10 @@ export const useTodos = () => {
     const addTodo = (task: string, dueDate: string, dueTime: string) => {
         const newTodo = {
             id: Date.now(),
-            startDateTime: formattedDate,
+            startDate: formattedDate,
+            startTime: formattedTime,
             dueDate,
             dueTime,
-            deuDateTime: `${dueTime}-${dueDate}`,
             task,
             completed: false
         };

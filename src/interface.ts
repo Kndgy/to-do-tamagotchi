@@ -1,7 +1,7 @@
 export interface Todo {
     id: number;
-    startDateTime: string;
-    deuDateTime: string;
+    startTime: string;
+    startDate: string;
     dueDate: string;
     dueTime: string;
     task: string;
