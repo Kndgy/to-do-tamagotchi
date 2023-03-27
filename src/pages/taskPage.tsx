@@ -4,12 +4,11 @@ import { useTodos } from "../utils/state"
 export const TaskPage = () => {
     const param = useParams()
     const {todos} = useTodos()
-    console.log(typeof param.todoid)
 
     const TaskCheck = () => {
         if(param.todoid){
-            const currentTask = todos[parseInt(param.todoid)]
-            console.log(currentTask)
+            const paramInt = parseInt(param.todoid)
+            const currentTask = todos.find((item)=>item.id === paramInt)
     
             if(!currentTask){
                 return(
@@ -23,9 +22,9 @@ export const TaskPage = () => {
         }
         return(
             <>
-            hi from task page, task id is {param.todoid}
-            <br/>
-            <NavLink to={'/'}>back</NavLink>    
+                hi from task page, task id is {param.todoid}
+                <br/>
+                <NavLink to={'/'}>back</NavLink>    
             </>
         )
     }
