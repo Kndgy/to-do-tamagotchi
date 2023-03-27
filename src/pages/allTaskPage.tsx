@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom"
+import { Link, NavLink } from "react-router-dom"
 import { useTodos } from "../utils/state"
 import { Task } from "../components/task"
 
@@ -9,6 +9,8 @@ export const AllTaskPage = () =>{
     return(
         <div className="todo-outlet">
             <div className="outlet-child">
+                <Link to={`/`}>Back</Link>
+                <p/>
                 {todos
                     .map((todo) => (
                         <li key={todo.id}>
