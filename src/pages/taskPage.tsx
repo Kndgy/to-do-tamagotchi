@@ -11,15 +11,7 @@ export const TaskPage = () => {
             const currentTask = todos[parseInt(param.todoid)]
             console.log(currentTask)
     
-            if(currentTask){
-                return(
-                    <>
-                    hi from task page, task id is {param.todoid}
-                    <br/>
-                    <NavLink to={'/'}>back</NavLink>    
-                    </>
-                )
-            }else{
+            if(!currentTask){
                 return(
                     <>
                         <NavLink to={'/'}>back</NavLink>
@@ -28,15 +20,14 @@ export const TaskPage = () => {
                     </>
                 )
             }
-        }else{
-            return(
-                <>
-                    <NavLink to={'/'}>back</NavLink>
-                    <br/>    
-                    it seems like theres missmatched id on the task ?
-                </>
-            )
         }
+        return(
+            <>
+            hi from task page, task id is {param.todoid}
+            <br/>
+            <NavLink to={'/'}>back</NavLink>    
+            </>
+        )
     }
 
     return (
