@@ -24,7 +24,7 @@ export const useTodos = () => {
 
     const addTodo = (task: string, dueDate: string, dueTime: string) => {
         const newTodo = {
-            id: todos.length,
+            id: Date.now(),
             startDateTime: formattedDate,
             dueDate,
             dueTime,
