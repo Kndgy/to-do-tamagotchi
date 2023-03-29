@@ -24,6 +24,26 @@ export const useTodos = () => {
     const [taskDate, setTaskDate] = useState<string>('');
     const [dueTime, setDueTime] = useState<string>('')
 
+    const getDeadline = (startDate: string, startTime: string, dueDate: string, dueTime: string) => {
+        const startDateObj = new Date(startDate);
+        const startTimeArr = startTime.split(":");
+        startDateObj.setHours(parseInt(startTimeArr[0]), parseInt(startTimeArr[1]), 0, 0);
+        
+        const dueDateObj = new Date(dueDate);
+        const dueTimeArr = dueTime.split(":");
+        dueDateObj.setHours(parseInt(dueTimeArr[0]), parseInt(dueTimeArr[1]), 0, 0);
+        
+        const deadline = dueDateObj.getTime() - startDateObj.getTime();
+        
+        const seconds = Math.floor(deadline / 1000);
+        const minutes = Math.floor(seconds / 60);
+        const hours = Math.floor(minutes / 60);
+        const days = Math.floor(hours / 24);
+        
+        return `${days} days ${hours % 24} hours ${minutes % 60} minutes ${seconds % 60} seconds`;
+      }      
+      
+
     const addTodo = (task: string, dueDate: string, dueTime: string) => {
         const newTodo = {
             id: Date.now(),
@@ -32,7 +52,8 @@ export const useTodos = () => {
             dueDate,
             dueTime,
             task,
-            completed: false
+            completed: false,
+            deadline: getDeadline(formattedDate, formattedTime, dueDate, dueTime)
         };
         const updatedTodos = [...todos, newTodo];
         setTodos(updatedTodos);
