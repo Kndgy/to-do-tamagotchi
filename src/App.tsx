@@ -16,7 +16,7 @@ const App = () => {
         todos,
     } = useTodos()
 
-    console.log(todos)
+    // console.log(todos)
 
     return(
         <div>

@@ -10,13 +10,13 @@ export const useTodos = () => {
         now.getMinutes().toString(),
         now.getHours().toString(),
         now.getDate().toString(),
-        now.getMonth(),
+        now.getMonth() + 1,
         now.getFullYear().toString()
     ];
 
-    const actualMonth = (month+1).toString()
+    const formattedMonth = month < 10 ? `0${month}` : `${month}`;
 
-    const formattedDate = `${year}-${actualMonth}-${day}`
+    const formattedDate = `${year}-${formattedMonth}-${day}`
     const formattedTime = `${hour}:${minute}`
 
     const [todos, setTodos] = useState<Todo[]>(initialTodos);
@@ -41,6 +41,8 @@ export const useTodos = () => {
         setTaskDate(taskDate)
     };
 
+    console.log(todos)
+
     const deleteTodo = (id: number) => {
         const updatedTodos = todos.map((todo) =>
             todo.id === id ? { ...todo, completed: true } : todo
@@ -48,7 +50,6 @@ export const useTodos = () => {
         setTodos(updatedTodos);
         localStorage.setItem("todos", JSON.stringify(updatedTodos));
     };
-    
 
     const updateTodoStatus = (id: number, completed: boolean) => {
     const updatedTodos = todos.map((todo) =>
