@@ -1,20 +1,6 @@
 import { NavLink } from "react-router-dom";
 import { taskProps } from "../interface";
 
-const DateElementCheck = ({todo}:{todo:string}) =>{
-    if(todo){
-    return(
-        <>
-            {todo} - {todo}
-        </>
-    )
-    }else{
-    return(
-        <>no date?</>
-    )
-    }
-}
-
 export const Task = ({todo, update, handle, deleteTask}: taskProps) => {
     return(
         <>
@@ -48,7 +34,7 @@ export const Task = ({todo, update, handle, deleteTask}: taskProps) => {
                             {todo.task}
                         </div>
                         <div className='todo-task-date'>
-                        <DateElementCheck todo={todo.dueDate}/>
+                        {todo.dueDate ? <>{todo.startDate} - {todo.dueDate}</> : <>b</> }
                         </div>
                     </div>
                 </NavLink>
