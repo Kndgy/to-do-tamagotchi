@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import { Todo } from "../interface";
 
 const initialTodos: Todo[] = [];
-const initialId: Todo[] = [];
 
 export const useTodos = () => {
 
