@@ -5,6 +5,7 @@ export interface Todo {
     dueDate: string;
     dueTime: string;
     task: string;
+    description: string;
     completed: boolean;
 }
 
