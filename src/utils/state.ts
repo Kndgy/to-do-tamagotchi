@@ -21,6 +21,7 @@ export const useTodos = () => {
 
     const [todos, setTodos] = useState<Todo[]>(initialTodos);
     const [newTodo, setNewTodo] = useState<string>("");
+    const [newDesc, setNewDesc] = useState<string>("");
     const [taskDate, setTaskDate] = useState<string>('');
     const [dueTime, setDueTime] = useState<string>('')
 
@@ -44,7 +45,7 @@ export const useTodos = () => {
       }      
       
 
-    const addTodo = (task: string, dueDate: string, dueTime: string) => {
+    const addTodo = (task: string, description:string, dueDate: string, dueTime: string) => {
         const newTodo = {
             id: Date.now(),
             startDate: formattedDate,
@@ -52,6 +53,7 @@ export const useTodos = () => {
             dueDate,
             dueTime,
             task,
+            description,
             completed: false,
             deadline: getDeadline(formattedDate, formattedTime, dueDate, dueTime)
         };
@@ -83,7 +85,7 @@ export const useTodos = () => {
     const handleAddTodo = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (!newTodo) return;
-    addTodo(newTodo, taskDate, dueTime );
+    addTodo(newTodo, newDesc, taskDate, dueTime );
     };
 
     const handleEditTodo = (id: number, newTask: string) => {
