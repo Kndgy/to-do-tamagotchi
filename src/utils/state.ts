@@ -61,6 +61,7 @@ export const useTodos = () => {
         setTodos(updatedTodos);
         localStorage.setItem("todos", JSON.stringify(updatedTodos));
         setNewTodo("");
+        setNewDesc("");
         setTaskDate(taskDate)
     };
 
@@ -100,6 +101,10 @@ export const useTodos = () => {
     setNewTodo(event.target.value);
     };
 
+    const handleTodoDescText = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setNewDesc(event.target.value);
+    };
+
     const handleDateChange = (event: React.ChangeEvent<HTMLDataElement>) => {
     setTaskDate(event.target.value);
     };
@@ -124,11 +129,13 @@ export const useTodos = () => {
 
   return {
     todos,
+    newDesc,
     newTodo,
     deleteTodo,
     updateTodoStatus,
     handleAddTodo,
     handleTodoText,
+    handleTodoDescText,
     handleEditTodo,
     handleDateChange,
     handleTimeChange,
