@@ -8,11 +8,13 @@ export const TodoPage = () => {
 
     const {    
         todos,
+        newDesc,
         newTodo,
         deleteTodo,
         updateTodoStatus,
         handleAddTodo,
         handleTodoText,
+        handleTodoDescText,
         handleEditTodo,
         handleDateChange,
         handleTimeChange
@@ -30,7 +32,7 @@ export const TodoPage = () => {
             <h1>To-Do List</h1>
             <form className="todo-form" onSubmit={handleAddTodo}>
                 <input className="todo-input" type="text" value={newTodo} onChange={handleTodoText} placeholder="Enter a new to-do" />
-                <input className="todo-input" type="text" value={} onChange={} placeholder="Enter a descriptions" />
+                <input className="todo-input" type="text" value={newDesc} onChange={handleTodoDescText} placeholder="Enter a descriptions" />
                 <input className="todo-input" type="time" onChange={handleTimeChange}/>
                 <input className="todo-date" type="date" onChange={handleDateChange}/>
                 <button className="todo-button" type="submit">Add</button>
