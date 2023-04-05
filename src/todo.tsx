@@ -35,7 +35,7 @@ export const TodoPage = () => {
                 <input className="todo-input" type="text" value={newDesc} onChange={handleTodoDescText} placeholder="Enter a descriptions" />
                 <input className="todo-input" type="time" onChange={handleTimeChange}/>
                 <input className="todo-date" type="date" onChange={handleDateChange}/>
-                <button className="todo-button" type="submit">Add A Task</button>
+                <button className="todo-button" type="submit">Add</button>
             </form>
             <ul>
             {todos

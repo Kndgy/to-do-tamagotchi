@@ -65,7 +65,7 @@ export const useTodos = () => {
         setTaskDate(taskDate)
     };
 
-    console.log(todos)
+    // console.log(todos)
 
     const deleteTodo = (id: number) => {
         const updatedTodos = todos.map((todo) =>
