@@ -9,6 +9,7 @@ export const TaskPage = () => {
         if(param.todoid){
             const paramInt = parseInt(param.todoid)
             const currentTask = todos.find((item)=>item.id === paramInt)
+            console.log(currentTask)
     
             if(!currentTask){
                 return(
@@ -19,13 +20,24 @@ export const TaskPage = () => {
                     </>
                 )
             }
+            return(
+                <>
+                    <NavLink to={'/'}>back</NavLink>    
+                    <p/>
+                    hi from task page, task id is {param.todoid}
+                    <br/>
+                    title {currentTask.task}
+                    <br/>
+                    description {currentTask.description}
+                    <br/>
+                    start date {currentTask.startDate} - due date {currentTask.dueDate}
+                    <br/>
+                    start time {currentTask.startTime} - due time {currentTask.dueTime}
+                </>
+            )
         }
         return(
-            <>
-                hi from task page, task id is {param.todoid}
-                <br/>
-                <NavLink to={'/'}>back</NavLink>    
-            </>
+            <></>
         )
     }
 
