@@ -38,6 +38,7 @@ export const TodoPage = () => {
                 <button className="todo-button" type="submit">Add</button>
             </form>
             <ul>
+                {/* deleted task keep returning possibly because state is resetted lol or maybe local storage */}
             {todos
                 .filter((todo) => !todo.completed)
                 .map((todo) => (
