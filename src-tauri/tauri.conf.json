@@ -43,6 +43,15 @@
         "title": "tamagochi-to-do",
         "width": 800,
         "height": 600
+      },
+      {
+        "label": "tama",
+        "fullscreen": false,
+        "resizable": true,
+        "title": "tamagochi",
+        "width": 800,
+        "height": 600,
+        "url": "http://localhost:1420/1680704026001"
       }
     ]
   }

@@ -6,6 +6,7 @@ export const Tamagotchi = () => {
     console.log("deadline string", todos.map((item)=>item.deadline))
     console.log("total task/feeds", todos.length)
     const level = [1,2,3,4,5,6,7,8,9]; 
+    const status = []
     return(
         <>
             <p className="todo-status">
