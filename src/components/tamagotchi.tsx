@@ -15,6 +15,9 @@ export const Tamagotchi = () => {
                 status effect
             </p>
             this is tamagotchi placeholder
+            <div>
+              status bars
+            </div>
         </>
     )
 }
